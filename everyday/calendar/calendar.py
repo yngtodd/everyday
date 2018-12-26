@@ -1,28 +1,52 @@
-import time
+import datetime
+
+import numpy as np
+import pandas as pd
+
+from terminaltables import SingleTable
+from everyday.calendar.settings import Settings
 
 
 class EverydayCalendar:
 
-    def __init__(self):
-        self.dates = {
-            'Jan': ['' for x in range(31)],
-            'Feb': ['' for x in range(31)],
-            'Mar': ['' for x in range(31)],
-            'Apr': ['' for x in range(31)],
-            'May': ['' for x in range(31)],
-            'Jun': ['' for x in range(31)],
-            'Jul': ['' for x in range(31)],
-            'Aug': ['' for x in range(31)],
-            'Sep': ['' for x in range(31)],
-            'Oct': ['' for x in range(31)],
-            'Nov': ['' for x in range(31)],
-            'Dec': ['' for x in range(31)]
-        }
+    def __init__(self, title='None', settings=Settings()):
+        self.title = title
+        self.settings = settings
+
+        self.months = [
+         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ]
+
+        self.days = np.asarray(
+          [['' for x in range(12)] for y in range(31)]
+        )
 
     def update(self):
-        day = time.strftime("%d")
-        month = time.strftime("%b")
-        self.dates[month][day] = '*'
+        now = datetime.datetime.now()
+        day = now.day
+        month = now.month
+        self.days[day-1][month-1] = '*'
 
-    def get_table(self):
-        header = list(self.dates.keys())
+    def undo_update(self):
+        now = datetime.datetime.now()
+        day = now.day
+        month = now.month
+        self.days[day-1][month-1] = ''
+
+    def print_progress(self):
+        data = list(self.days)
+        data.insert(0, self.months)
+        tab = SingleTable(data, self.title)
+        tab.inner_column_border = False
+        tab.inner_row_border = False
+        tab.justify_columns = self.settings.justification
+        print(tab.table)
+
+    def save(self):
+        df = pd.DataFrame(self.days, columns=self.months)
+        df.to_csv(self.title)
+
+    def load(self, path):
+        df = pd.read_csv(path)
+        self.days = df.values
