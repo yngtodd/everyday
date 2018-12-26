@@ -44,11 +44,10 @@ class EverydayCalendar:
         tab.justify_columns = self.settings.justification
         print(tab.table)
 
-    def save(self):
-        saves = os.path.join(os.getcwd(), 'saves')
-        savefile = os.path.join(saves, self.title)
+    def save(self, path):
+        savefile = os.path.join(path, self.title)
         df = pd.DataFrame(self.days, columns=self.months)
-        df.to_csv(savefile)
+        df.to_csv(savefile, index=False)
 
     def load(self, path):
         df = pd.read_csv(path)
