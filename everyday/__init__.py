@@ -3,4 +3,4 @@ __email__ = 'youngmt1@ornl.gov'
 __version__ = '0.0.1'
 
 
-from .calendar.calendar import EverydayCalendar
+from .cal.calendar import EverydayCalendar

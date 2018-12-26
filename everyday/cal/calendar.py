@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 from terminaltables import SingleTable
-from everyday.calendar.settings import Settings
+from everyday.cal.settings import Settings
 
 
 class EverydayCalendar:

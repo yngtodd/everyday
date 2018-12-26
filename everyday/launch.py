@@ -9,7 +9,7 @@ def main():
     parser.add_argument('--title', type=str, help='Name of the calendar.')
     args = parser.parse_args()
 
-    savepath = os.path.join(os.getcwd(), 'calendar/saves')
+    savepath = os.path.join(os.getcwd(), 'cal/saves')
     savefile = os.path.join(savepath, args.title)
 
     calendar = EverydayCalendar(title=args.title)
@@ -21,7 +21,7 @@ def main():
 
     calendar.update()
     calendar.progress()
-    calendar.save()
+    calendar.save(savepath)
 
 
 if __name__=='__main__':
