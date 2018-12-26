@@ -1,3 +1,4 @@
+import os
 import datetime
 
 import numpy as np
@@ -44,8 +45,10 @@ class EverydayCalendar:
         print(tab.table)
 
     def save(self):
+        saves = os.path.join(os.getcwd(), 'saves')
+        savefile = os.path.join(saves, self.title)
         df = pd.DataFrame(self.days, columns=self.months)
-        df.to_csv(self.title)
+        df.to_csv(savefile)
 
     def load(self, path):
         df = pd.read_csv(path)
