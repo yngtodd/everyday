@@ -24,7 +24,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='everyday',
     version='0.0.1',
-    description='Goal calendar based on Simone Giertz's Everyday Calendar.',
+    description="Goal calendar based on Simone Giertz's Everyday Calendar.",
     long_description=readme + '\n\n' + doclink + '\n\n' + history,
     author='Todd Young',
     author_email='youngmt1@ornl.gov',

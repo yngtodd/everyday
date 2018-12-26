@@ -1,4 +1,6 @@
 import datetime
+
+import numpy as np
 import pandas as pd
 
 from terminaltables import SingleTable
@@ -33,12 +35,13 @@ class EverydayCalendar:
         self.days[day-1][month-1] = ''
 
     def print_progress(self):
-        data = [self.months, self.days]
+        data = list(self.days)
+        data.insert(0, self.months)
         tab = SingleTable(data, self.title)
         tab.inner_column_border = False
         tab.inner_row_border = False
         tab.justify_columns = self.settings.justification
-        print(tab)
+        print(tab.table)
 
     def save(self):
         df = pd.DataFrame(self.days, columns=self.months)
