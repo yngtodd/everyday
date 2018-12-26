@@ -50,5 +50,5 @@ class EverydayCalendar:
         df.to_csv(savefile, index=False)
 
     def load(self, path):
-        df = pd.read_csv(path)
+        df = pd.read_csv(path, keep_default_na=False)
         self.days = df.values
