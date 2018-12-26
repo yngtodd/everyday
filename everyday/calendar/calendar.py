@@ -35,7 +35,7 @@ class EverydayCalendar:
         month = now.month
         self.days[day-1][month-1] = ''
 
-    def print_progress(self):
+    def progress(self):
         data = list(self.days)
         data.insert(0, self.months)
         tab = SingleTable(data, self.title)
