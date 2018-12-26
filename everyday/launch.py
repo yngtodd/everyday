@@ -1,7 +1,7 @@
 import os
 import argparse
 
-from everyday.calendar import EverydayCalendar
+from everyday import EverydayCalendar
 
 
 def main():
