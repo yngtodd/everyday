@@ -11,7 +11,6 @@ def main():
 
     savepath = os.path.join(os.getcwd(), 'cal/saves')
     savefile = os.path.join(savepath, args.title)
-
     calendar = EverydayCalendar(title=args.title)
 
     try:
