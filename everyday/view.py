@@ -5,7 +5,7 @@ from everyday import EverydayCalendar
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Saving progress!...')
+    parser = argparse.ArgumentParser(description='Viewing progress!...')
     parser.add_argument('-t', '--title', type=str, help='Name of the calendar.')
     args = parser.parse_args()
 
